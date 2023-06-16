@@ -1,0 +1,27 @@
+{
+  "name": "manh-email",
+  "version": "1.0.0",
+  "main": "web/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "info": "shopify app info",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.1.4",
+    "@shopify/app": "3.46.3",
+    "@shopify/cli": "3.46.3",
+    "antd": "^5.6.1"
+  },
+  "author": "manhm",
+  "private": true,
+  "workspaces": [
+    "web",
+    "web/frontend",
+    "extensions/*"
+  ]
+}
