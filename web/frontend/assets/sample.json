@@ -1,0 +1,319 @@
+{
+  "counters": {
+    "u_column": 1,
+    "u_row": 1,
+    "u_content_heading": 2,
+    "u_content_text": 2,
+    "u_content_button": 1,
+    "u_content_divider": 1
+  },
+  "body": {
+    "id": "BMmJxsHhTJ",
+    "rows": [
+      {
+        "id": "II0hzjFwRX",
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "id": "SaH8jVltXJ",
+            "contents": [
+              {
+                "id": "i4pivfE3df",
+                "type": "heading",
+                "values": {
+                  "containerPadding": "10px 30px",
+                  "anchor": "",
+                  "headingType": "h3",
+                  "fontSize": "13px",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_heading_1",
+                    "htmlClassNames": "u_content_heading"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<h1 class=\"shop-name__text\" style=\"text-align: left; white-space: normal; color: #333333; margin: 0px;\">{{shop.name}}</h1>",
+                  "_override": {
+                    "mobile": {
+                      "fontSize": "19px"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "6HlJf1ko3L",
+                "type": "heading",
+                "values": {
+                  "containerPadding": "10px 30px 1px",
+                  "anchor": "",
+                  "headingType": "h4",
+                  "fontSize": "13px",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_heading_2",
+                    "htmlClassNames": "u_content_heading"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<h2 style=\"color: #000000; text-align: left; white-space: normal; margin: 0px 0px 10px;\">Welcome to {{shop.name}}!</h2>"
+                }
+              },
+              {
+                "id": "5Dw6PR5zfp",
+                "type": "text",
+                "values": {
+                  "containerPadding": "8px 30px 10px",
+                  "anchor": "",
+                  "fontSize": "14px",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_text_1",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<p style=\"line-height: 140%;\"><span style=\"color: #777777; text-align: left; white-space: normal; float: none; display: inline; line-height: 19.6px;\">You've activated your customer account. Next time you shop with us, log in for faster checkout.</span></p>"
+                }
+              },
+              {
+                "id": "e9Tm6fdhvl",
+                "type": "button",
+                "values": {
+                  "containerPadding": "10px 30px",
+                  "anchor": "",
+                  "href": {
+                    "name": "web",
+                    "values": {
+                      "href": "{{ shop.url }}",
+                      "target": "_blank"
+                    },
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    }
+                  },
+                  "buttonColors": {
+                    "color": "#FFFFFF",
+                    "backgroundColor": "#198ec0",
+                    "hoverColor": "#FFFFFF",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": false,
+                    "width": "100%"
+                  },
+                  "fontSize": "14px",
+                  "textAlign": "center",
+                  "lineHeight": "120%",
+                  "padding": "20px",
+                  "border": {},
+                  "borderRadius": "4px",
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_button_1",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<span style=\"line-height: 16.8px;\">Visit our store</span>",
+                  "calculatedWidth": 440,
+                  "calculatedHeight": 57
+                }
+              },
+              {
+                "id": "7JG5OvXkX9",
+                "type": "divider",
+                "values": {
+                  "width": "100%",
+                  "border": {
+                    "borderTopWidth": "1px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#BBBBBB"
+                  },
+                  "textAlign": "center",
+                  "containerPadding": "30px 10px",
+                  "anchor": "",
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_divider_1",
+                    "htmlClassNames": "u_content_divider"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true
+                }
+              },
+              {
+                "id": "etarBaKRAX",
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px 10px 10px 30px",
+                  "anchor": "",
+                  "fontSize": "14px",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_text_2",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<p style=\"line-height: 140%;\"><span style=\"color: #999999; text-align: left; white-space: normal; float: none; display: inline; line-height: 19.6px;\">If you have any questions, reply to this email or contact us at </span><span style=\"color: #3598db; line-height: 19.6px;\">{{shop.email}}</span></p>"
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_1",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "displayCondition": null,
+          "columns": false,
+          "backgroundColor": "",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": "no-repeat",
+            "size": "custom",
+            "position": "center"
+          },
+          "padding": "0px",
+          "anchor": "",
+          "hideDesktop": false,
+          "_meta": {
+            "htmlID": "u_row_1",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "hideable": true
+        }
+      }
+    ],
+    "values": {
+      "popupPosition": "center",
+      "popupWidth": "600px",
+      "popupHeight": "auto",
+      "borderRadius": "10px",
+      "contentAlign": "center",
+      "contentVerticalAlign": "center",
+      "contentWidth": "500px",
+      "fontFamily": {
+        "label": "Arial",
+        "value": "arial,helvetica,sans-serif"
+      },
+      "textColor": "#000000",
+      "popupBackgroundColor": "#FFFFFF",
+      "popupBackgroundImage": {
+        "url": "",
+        "fullWidth": true,
+        "repeat": "no-repeat",
+        "size": "cover",
+        "position": "center"
+      },
+      "popupOverlay_backgroundColor": "rgba(0, 0, 0, 0.1)",
+      "popupCloseButton_position": "top-right",
+      "popupCloseButton_backgroundColor": "#DDDDDD",
+      "popupCloseButton_iconColor": "#000000",
+      "popupCloseButton_borderRadius": "0px",
+      "popupCloseButton_margin": "0px",
+      "popupCloseButton_action": {
+        "name": "close_popup",
+        "attrs": {
+          "onClick": "document.querySelector('.u-popup-container').style.display = 'none';"
+        }
+      },
+      "backgroundColor": "#ffffff",
+      "backgroundImage": {
+        "url": "",
+        "fullWidth": true,
+        "repeat": "no-repeat",
+        "size": "custom",
+        "position": "center"
+      },
+      "preheaderText": "",
+      "linkStyle": {
+        "body": true,
+        "linkColor": "#0000ee",
+        "linkHoverColor": "#0000ee",
+        "linkUnderline": true,
+        "linkHoverUnderline": true
+      },
+      "_meta": {
+        "htmlID": "u_body",
+        "htmlClassNames": "u_body"
+      }
+    }
+  },
+  "schemaVersion": 15
+}
