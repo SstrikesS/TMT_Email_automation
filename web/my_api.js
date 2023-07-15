@@ -48,6 +48,20 @@ export async function updateEmailTemplate(template_id, data) {
         console.log(error);
     }
 }
+
+export async function deleteEmailTemplate(template_id) {
+    try {
+        const res = await fetch("http://127.0.0.1:3001/delete/template/" + template_id, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    } catch (error){
+        console.log(error)
+    }
+}
+
 export async function createEmailTemplate() {
     try {
         const res = await fetch("http://127.0.0.1:3001/add/template/", {

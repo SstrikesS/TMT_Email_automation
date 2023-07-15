@@ -137,6 +137,12 @@ app.post("/add/template", async (req, res) => {
         });
 });
 
+app.delete("/delete/template/:id", async (req, res) => {
+    const id = req.params.id
+     Template.findByIdAndDelete(id)
+        .then(() => {return res.status(200).json({success: "Template deleted"})})
+})
+
 const port = 3001;
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
