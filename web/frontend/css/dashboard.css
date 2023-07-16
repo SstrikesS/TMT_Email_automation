@@ -2,7 +2,7 @@
     width: 100%;
     float: right;
 }
-.template-container {
+.templates-container {
     padding-bottom: 20px;
     background-color: #E9E9E9;
     margin: 10px 10px 10px 10px;
@@ -38,6 +38,7 @@ img.template-image {
 .my-template-container {
     display: block;
     margin-bottom: 40px;
+    min-height: 300px;
 }
 .my-template {
     display: flex;

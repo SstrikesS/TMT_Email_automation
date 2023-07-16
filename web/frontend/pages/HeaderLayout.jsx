@@ -4,12 +4,11 @@ import {
     UserOutlined,
     VideoCameraOutlined,
     MenuUnfoldOutlined,
-    QqOutlined
 } from '@ant-design/icons';
 import {shopApi} from "../../my_api.js";
 import {Button, Layout, Menu, theme} from 'antd';
-import {Outlet, useNavigate} from 'react-router-dom';
-import {useState} from 'react';
+import {Outlet, useLocation, useNavigate} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 
 const {Header, Sider, Content} = Layout;
 
@@ -18,10 +17,17 @@ const HeaderLayout = () => {
     const [menuCheck, setMenuCheck] = useState('1')
     const [collapsed, setCollapsed] = useState(false);
     let [shop_name, setShop_name] = useState('');
+    const location = useLocation();
+    useEffect(() => {
+        if(location.pathname === '/dashboard'){
+            setMenuCheck('1');
+        } else if(location.pathname === '/templates') {
+            setMenuCheck('2');
+        }
+    }, [location])
     const fetchData = async () => {
         let shop_api = await shopApi();
         setShop_name(shop_api['shop']['name']);
-
     };
     fetchData().then();
     const {
@@ -33,9 +39,9 @@ const HeaderLayout = () => {
             setMenuCheck(e.key)
             navigate('/dashboard')
         }
-        if (e.key === '3') {
+        if (e.key === '2') {
             setMenuCheck(e.key)
-            navigate('/editflow')
+            navigate('/templates')
         }
     }
     return (
@@ -47,9 +53,8 @@ const HeaderLayout = () => {
                 </div>
 
                 <Menu
-
+                    selectedKeys={[menuCheck]}
                     mode="inline"
-                    defaultSelectedKeys={['1']}
                     onClick={handleMenuClick}
                     items={[
                         {
@@ -61,11 +66,6 @@ const HeaderLayout = () => {
                             key: '2',
                             icon: <VideoCameraOutlined/>,
                             label: 'Template browser',
-                        },
-                        {
-                            key: '3',
-                            icon: <QqOutlined/>,
-                            label: 'Edit flow',
                         },
                     ]}
                 />

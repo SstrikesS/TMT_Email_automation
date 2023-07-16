@@ -10,6 +10,7 @@ import {
 import HeaderLayout from "./pages/HeaderLayout.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 import Editflow from "./pages/editflow.jsx";
+import TemplatesBrowser from "./pages/templatesBrowser.jsx";
 
 export default function App() {
     // Any .tsx or .jsx files in /pages will become a route
@@ -29,8 +30,8 @@ export default function App() {
                                     destination: "/dashboard",
                                 },
                                 {
-                                    label: t("Edit Flow"),
-                                    destination: "/editflow",
+                                    label: t("Template Browser"),
+                                    destination: "/templates",
                                 },
                             ]}
                         />
@@ -38,7 +39,7 @@ export default function App() {
                             <Route key={"editflow"} path={"editflow/:idTemplate?"} element={<Editflow/>}/>
                             <Route element={<HeaderLayout/>}>
                                 <Route key={"dashboard"} path={"/dashboard"} element={<Dashboard/>}/>
-
+                                <Route key={"templatesBrowser"} path={"/templates"} element={<TemplatesBrowser/>}/>
                             </Route>
                         </Routes>
                     </QueryProvider>

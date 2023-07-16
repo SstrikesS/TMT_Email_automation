@@ -1,7 +1,7 @@
 export const ProductInfo = [
     {
         "category": "Product Info",
-        "tags": ['product_info', 'product', 'info'],
+        "tags": ['product info', 'product', 'info'],
         "data": {
             "cells": [1, 1],
             "columns": [{
@@ -222,7 +222,7 @@ export const ProductInfo = [
     },
     {
         "category": "Product Info",
-        "tags": ['product_info', 'product', 'info'],
+        "tags": ['product info', 'product', 'info'],
         "data": {
             "cells": [1, 1],
             "columns": [{
@@ -390,7 +390,7 @@ export const ProductInfo = [
     },
     {
         "category": "Product Info",
-        "tags": ['product_info', 'product', 'info'],
+        "tags": ['product info', 'product', 'info'],
         "data": {
             "cells": [1],
             "columns": [{

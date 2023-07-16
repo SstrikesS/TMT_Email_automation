@@ -8,13 +8,17 @@ import {useParams} from "react-router-dom";
 import {HtmlMirror} from "../components/index.js";
 import {EditMajor} from '@shopify/polaris-icons';
 import {traverseBody, replace_liquid} from "../components/index.js";
-import {useAuthenticatedFetch} from "../hooks/index.js";
+// import {useAuthenticatedFetch} from "../hooks/index.js";
 import {ProductGrid, ProductInfo} from "../assets/index.js";
+import {buttonCustom} from "../assets/ButtonCustom.jsx";
+import {degistBlock} from "../assets/DegistBlock.jsx";
+import {LogoBlock} from "../assets/LogoBlock.jsx";
+import {ImageGallery} from "../assets/ImageGallery.jsx";
 
 const EditFlow = () => {
-    const fetchShop = useAuthenticatedFetch();
+    // const fetchShop = useAuthenticatedFetch();
     const [state, setState] = useState({
-        template_name: null,
+        template_name: '',
         htmlCode: '',
         editNameActive: false,
         active_session: true,
@@ -24,6 +28,7 @@ const EditFlow = () => {
         liquid: [],
         data_shop: undefined,
     })
+
 
     const [inputTemplateName, setInputTemplateName] = useState("");
 
@@ -37,7 +42,7 @@ const EditFlow = () => {
 
     const handleCopyText = async () => {
         saveDesign();
-        const {html} = await new Promise((resolve, reject) => {
+        const {html} = await new Promise((resolve) => {
             emailEditorRef.current.editor.exportHtml((data) => {
                 resolve(data);
             });
@@ -103,44 +108,35 @@ const EditFlow = () => {
             })
     }, []);
 
-    const fetchApi = useCallback(async () => {
-        fetchShop("/api/shop/info").then((response) => response.json())
-            .then((data) => {
-                setState({
-                    ...state,
-                    data_shop: data[0]
-                })
-            })
-            .then(() => {
-                setState({
-                    ...state,
-                    liquid: traverseBody(state.saveTemplate.body.rows)
-                });
-                setState({
-                    ...state,
-                    previewTemplate: replace_liquid(state.previewTemplate, state.liquid, state.data_shop)
-                })
-            })
-    }, [])
+    // const fetchApi = useCallback(async () => {
+    //     fetchShop("/api/shop/info").then((response) => response.json())
+    //         .then((data) => {
+    //             setState({
+    //                 ...state,
+    //                 data_shop: data[0]
+    //             })
+    //         })
+    //         .then(() => {
+    //             setState({
+    //                 ...state,
+    //                 liquid: traverseBody(state.saveTemplate.body.rows)
+    //             });
+    //             setState({
+    //                 ...state,
+    //                 previewTemplate: replace_liquid(state.previewTemplate, state.liquid, state.data_shop)
+    //             })
+    //         })
+    // }, [])
 
 
     useEffect(() => {
         if (idTemplate !== undefined) {
-            fetchData().then(() => {
-            })
+            fetchData().then()
                 .catch(console.error);
+            // fetchApi().then()
+            //     .catch(console.error);
         }
     }, [idTemplate])
-
-    // useEffect( () => {
-    //     console.log(state);
-    //     if(state.saveTemplate !== undefined) {
-    //         fetchApi().then(() => {
-    //
-    //         })
-    //             .catch(console.error);
-    //     }
-    // },[state.saveTemplate]);
 
     const saveDesign = () => {
         emailEditorRef.current?.editor?.saveDesign((design) => {
@@ -155,18 +151,17 @@ const EditFlow = () => {
         });
     };
 
-    const exportHtml = async () => {
-        saveDesign();
+    const exportHtml =  () => {
         try {
-            const {html} = await new Promise((resolve, reject) => {
-                emailEditorRef.current.editor.exportHtml((data) => {
-                    resolve(data);
+            emailEditorRef.current.editor.exportHtml((data) => {
+                setState({
+                    ...state,
+                    htmlCode: data.html,
+                    currentTemplate: data.design,
+                    saveTemplate: data.design,
+                    active_session: false,
                 });
-            });
-            setState({
-                ...state,
-                htmlCode: html,
-                active_session: false,
+                updateEmailTemplate(idTemplate, data.design).then();
             });
         } catch (error) {
             console.error(error);
@@ -204,13 +199,7 @@ const EditFlow = () => {
         }
     };
 
-    const onDesignLoad = () => {
-        console.log('Ready');
-    };
-
     const onReady = async () => {
-        console.log('Loading');
-        emailEditorRef.current?.editor?.addEventListener('design:loaded', onDesignLoad);
         if (idTemplate === undefined || state.currentTemplate === undefined || state.currentTemplate === null) {
             emailEditorRef.current?.editor?.loadBlank(undefined);
         } else {
@@ -271,7 +260,7 @@ const EditFlow = () => {
                 onReady={onReady}
                 style={{display: displayModel.none[state.active_session]}}
                 options={{
-                    amp: true,
+                    // amp: true,
                     appearance: {},
                     features: {
                         preview: false,
@@ -294,7 +283,11 @@ const EditFlow = () => {
                     ],
                     blocks: [
                         ...ProductGrid,
-                        ...ProductInfo
+                        ...ProductInfo,
+                        ...buttonCustom,
+                        ...degistBlock,
+                        ...LogoBlock,
+                        ...ImageGallery,
                     ]
                 }}
             />

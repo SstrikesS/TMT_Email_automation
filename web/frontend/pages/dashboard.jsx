@@ -1,13 +1,15 @@
 import React, {useCallback, useEffect, useState} from "react"
 import "../css/dashboard.css"
-import {Button} from 'antd';
+import {Button, Modal, Pagination} from 'antd';
 import {useNavigate} from "react-router-dom";
-import {createEmailTemplate, cloneEmailTemplate} from "../../my_api.js";
-
+import {createEmailTemplate, cloneEmailTemplate, deleteEmailTemplate} from "../../my_api.js";
+import {ExclamationCircleFilled} from "@ant-design/icons";
 
 const Dashboard = () => {
     const [defaultTemplates, setDefaultTemplate] = useState([]);
     const [customTemplates, setCustomTemplate] = useState([]);
+    const { confirm } = Modal;
+    const [current, setCurrent] = useState(1);
 
     const fetchData = useCallback(async () => {
         await fetch('http://127.0.0.1:3001/templates?type=Shopify&limit=3&page=1')
@@ -28,26 +30,50 @@ const Dashboard = () => {
         );
     }, [])
 
-
-
     const nagivate = useNavigate()
-    const handleOnClick = (template) => {
-        nagivate('/dashboard')
+    const handleOnClick = () => {
+        nagivate('/templates')
     }
-
     const handleNewTemplate = () => {
          createEmailTemplate()
             .then((data) => {
                 nagivate('/editflow/' + data._id);
             });
     }
+    const showDeleteConfirm = (delete_id) => {
+        confirm({
+            title: 'Are you sure delete this task?',
+            icon: <ExclamationCircleFilled />,
+            content: 'Some descriptions',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                console.log('Delete successful');
+                deleteEmailTemplate(delete_id)
+                    .then(() => fetchData());
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    };
+    const itemsPerPage = 3;
+    const startIndex = (current - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const displayedItems = Object.values(customTemplates).slice(startIndex, endIndex);
+    const onChange  = (page) => {
+        console.log(page);
+        setCurrent(page);
+    };
+
 
     return (
         <div className="dashboard">
             <div className="page-name" style={{margin: "20px 20px 0"}}>
                 <h1 style={{fontSize: "30px", fontFamily: "sans-serif"}}>Dashboard</h1>
             </div>
-            <div className="template-container">
+            <div className="templates-container">
                 <h2 style={{fontWeight: "bold", fontSize: "18px", marginLeft: "20px", paddingTop: "10px"}}>Recommend
                     templates</h2>
                 <div onClick={handleOnClick}
@@ -66,12 +92,12 @@ const Dashboard = () => {
                         <div className="template-content" onClick={() => {
                             cloneEmailTemplate(template)
                                 .then((data) => {
-                                nagivate('/editflow/' + data._id);
-                            });
+                                    nagivate('/editflow/' + data._id);
+                                });
                         }}>
                             <div>
                                 <img className="template-image" alt={template.template_name}
-                                     src="https://lh3.googleusercontent.com/fife/APg5EOaq5M0Dx8t6UvUERx5msUIOmpWvWVtk0ZMp4uX1e4ly5jN8I2HmdnI7BuMKnqu9u-E7pohR6FQsfXX-2dUj_I-3pf1rB4DfIVrGu8Wvbu40WjiSWXBPZ5PZK-jvX38Iy-Y38y_oDkMusWOVAuaVOWqvcWs72TVbvCRTLQvigeaaRhEgz3IWu5xpV6cGH42Iz6UOyRnPCF7lBVwxBNHrvndjAlG2LvKWggfy3m-xS_e-EtJlxq0fDBPoKqlm36IV47iaX495f0ObBGmQKIJcY6HBfoARYgH6W0O5FZd4Qs0hhAeZoNkyEosLKUot6crln8Zo4kgKLvPHz_hV1GCp9Wvzy3Q76lvQ34ONy4Q37b2lO_eBrCJYM6g1FEsPHMdquRPmnNAmoRDzdh5Oo0YT0bzGq_U_fgByWMGQtE57-HSSMLH8Sy9CRO6-SHoMvqWS22vWkLFlxdB07F1Hk56swoHc5WOJ8Sp-mPrVMyxThDt6ASty2wh01xE_zHZ7ok5WlK_OJu7sIDnXA2vuHcfKydNt5UhsMXiw2KvC-dRBKKIx6c6Er-kN5ttljBLf_hTPU1zvbvihT7FnCE1x_NX5JT5LOMX86CPoDggA_0ryHzKejIVS9gq_WfXXDd37UrEDvktSJ5dgEVB-ccnGr3KjOFp4Z0Yd_3OEnVotI3b0xF34YmByoUKEHzM9lCFyxyGANvk_g_7PEXDch-n7ZQjhJv-o9EzQp_mtLXvPvyzsWoGU6lOJcQhhNSnA8F5lSEPB6lV_5A3cwiraUiEOEvDhREzKc5JMxsMCBkq0xvln1DAcJ75qxESj1CQtTg6wQ6DxZI07W_AlGs_5xLo9S8PZNQgSWzqEx3rMxsdy8t0SOpLJOf9Hst7vov0s18TBV2nUkaRzkCAn9WgrHJO5eIg3OQxfRQJ3g_CMfPDlYzGqn23WQpl3twVR6z4JXk3Q_f7e97pOGesCgc6X6U3h5SkhVst2E-TgCjKk63f69nH-ho-3d4tnrrgKKfBROX3HEQ6uPrYDwC0JJBPDpdYGpEXBCXTgbuQ-4Zpyn76W18K3CiTo3dsvx2KZdIgvXd3LTB1dqaEQ7sW5QtoN0XIn1dctj15GKNEebiOp34f7xIlQxFKL0vIMiTdY38UExZ7DhMvghJ4HFx74RbUgSqB6DwARTMTthgo2YkSQkohWeIqKU7s1BYzKyDGPtvBF4u8OARsDSPyxhq9WCWfOM6gZBK2eH1jyYjQrTY1RUmfqk3EW5EqRi-iFCqGhdfvG4r1GhzvJGrO4UqF_tO_yNKRm87ZD74f-SQ1dSgJn3IYWKBxakrvZpvwNSI5SuSSqx6QdMNbvyZxH9cndTMP_gapSPiuxbVZJC-XIKnb75PW7bNMcRblukRYVeO0nfZg-ouBGux4UT92FNHz1vGxe0FpSAGU1474FeNmlL0SNqEVgTSWTL8E9w7A4etoFUh53WN5xn6wweObIAryLiy6g2myEjdH9-xojrqX4eah5_ir64fyUX2bxehoEGh-XusqZmx9ullifth9bgHFw=w1846-h919"/>
+                                     src= {template.thumbnails} />
                                 <h3 style={{
                                     fontWeight: "bold",
                                     fontSize: "18px",
@@ -87,8 +113,8 @@ const Dashboard = () => {
                 <div style={{margin: "20px 20px 0"}}>
                     <h1 style={{fontSize: "24px", fontFamily: "sans-serif"}}>My email templates</h1>
                 </div>
-                <div className="my-template">
-                    {customTemplates.map((template) => (
+                <div className="my-template" style={{maxHeight:"350px"}}>
+                    {displayedItems.map((template) => (
                         <div className="my-template content">
                             <div style={{display: "flex", justifyContent: "center"}}>
                                 <img className="my-template content img"
@@ -105,8 +131,21 @@ const Dashboard = () => {
                             }}>{template.template_name}
                             </div>
                             <Button onClick={ () => nagivate('/editflow/' + template._id)} type="primary">Edit</Button>
+                            <Button onClick={ () => showDeleteConfirm(template._id)} type="dashed" style={{width:"80px", marginLeft:"10px"}} >Delete</Button>
                         </div>
                     ))}
+                </div>
+            </div>
+            <div style={{ marginTop: '50px', minHeight: '100px', display: 'flex' }}>
+                <div style={{ marginLeft: 'auto' }}>
+                    <Pagination
+                        simple
+                        current={current}
+                        onChange={onChange}
+                        total={Object.values(customTemplates).length}
+                        pageSize={itemsPerPage}
+                        style={{ marginTop: '10px', marginRight: '40px' }}
+                    />
                 </div>
             </div>
         </div>
