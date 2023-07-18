@@ -1,0 +1,23 @@
+#button1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+#button2 {
+    margin-left: 10px;
+}
+
+#third_section_taskbar {
+    margin-top: 20px;
+    margin-left: 250px;
+}
+#first_section_taskbar{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#first_section_taskbar p{
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
+    margin-top:10px;
+}

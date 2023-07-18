@@ -1,0 +1,60 @@
+.dashboard {
+    width: 100%;
+    float: right;
+}
+.templates-container {
+    padding-bottom: 20px;
+    background-color: #E9E9E9;
+    margin: 10px 10px 10px 10px;
+    border-radius: 20px;
+}
+.templates {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.new-template {
+    cursor: pointer;
+    background-color: #4262ff;
+    width: 190px;
+    height: 190px;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px;
+}
+.template-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    margin: 20px 20px;
+    cursor: pointer;
+}
+img.template-image {
+    width: 100%;
+}
+.my-template-container {
+    display: block;
+    margin-bottom: 40px;
+    min-height: 300px;
+}
+.my-template {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.my-template.content {
+    background: #E9E9E9;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 30px;
+    border-radius: 15px;
+    padding-bottom: 20px;
+}
+.my-template.content.img {
+    width: 80%;
+}
